@@ -1,0 +1,45 @@
+class Solution {
+  public:
+  int kadancemax(vector<int>&arr, int n)
+  {
+      int sum=0;
+      int maxsum=INT_MIN;
+      
+          for(int i=0;i<n;i++)
+          {
+              sum=max(arr[i],sum+arr[i]);
+              maxsum=max(sum,maxsum);
+          }
+          return maxsum;
+      
+  }
+   int kadancemin(vector<int>&arr,int n)
+  {
+      int sum=0;
+      int minsum=INT_MAX;
+      
+          for(int i=0;i<n;i++)
+          {
+              sum=min(arr[i],sum+arr[i]);
+              minsum=min(sum,minsum);
+          }
+          return minsum;
+      
+  }
+    int maxCircularSum(vector<int> &arr) {
+        // code here
+        int n=arr.size();
+        int totalsum=0;
+        for(int i=0;i<n;i++)
+        {
+            totalsum+=arr[i];
+        }
+        int maxsum=kadancemax(arr,n);
+        int minsum=kadancemin(arr,n);
+        if(maxsum>0)
+        {
+            return max(maxsum,totalsum-minsum);
+        }
+        return maxsum;
+    }
+};
