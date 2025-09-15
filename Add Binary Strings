@@ -1,0 +1,48 @@
+class Solution {
+  public:
+    string addBinary(string& s1, string& s2) {
+        // your code here
+        string ans="";
+        int i=s1.length()-1;
+        int j=s2.length()-1;
+        int carry=0;
+        while(i>=0 || j>=0|| carry)
+        {
+            int sum=carry;
+            if(i>=0)
+            {
+                sum=sum+s1[i]-'0';
+                i--;
+            }
+            if(j>=0)
+            {
+                sum=sum+s2[j]-'0';
+                j--;
+            }
+            ans+=(sum%2)+'0';
+            carry=sum/2;
+            
+        }
+    
+        reverse(ans.begin(),ans.end());
+        int n=ans.length();
+      if(ans[0]=='0')
+      {
+          string result="";
+          int k=0;
+          while(k<n && ans[k]=='0')
+          {
+              k++;
+          }
+          while(k<n)
+          {
+           result+=ans[k];
+           k++;
+       
+          }
+             return result;
+      }
+        
+        return ans;
+    }
+};
