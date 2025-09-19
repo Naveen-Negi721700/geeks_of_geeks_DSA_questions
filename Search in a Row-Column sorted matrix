@@ -1,0 +1,26 @@
+class Solution {
+  public:
+    bool matSearch(vector<vector<int>> &mat, int x) {
+        // your code here
+        int m=mat.size();
+        int n=mat[0].size();
+        int r=0;
+        int c=n-1;
+        while(c>=0 && r<m)
+        {
+            int mid=mat[r][c];
+            if(x==mat[r][c])
+            {
+                return true;
+            }
+            else if(x<mat[r][c])
+            {
+                c--;
+            }
+            else{
+                r++;
+            }
+        }
+        return false;
+    }
+};
