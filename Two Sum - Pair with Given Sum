@@ -1,0 +1,19 @@
+class Solution {
+  public:
+    bool twoSum(vector<int>& arr, int target) {
+        // code here
+        map<int,int>m;
+        int n=arr.size();
+        for(int i=0;i<n;i++)
+        {
+            int second_el=target-arr[i];
+            if(m.find(second_el)!=m.end())
+            {
+                return true;
+            }
+            m[arr[i]]=i;
+            
+        }
+        return false;
+    }
+};
