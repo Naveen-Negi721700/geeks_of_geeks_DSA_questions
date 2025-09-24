@@ -1,0 +1,19 @@
+class Solution {
+  public:
+    int countPairs(vector<int> &arr, int target) {
+        // Code here
+        int n=arr.size();
+        unordered_map<int ,int>m;
+        int count=0;
+        for(int i=0;i<n;i++)
+        {
+            int second_el=target-arr[i];
+            if(m.find(second_el)!=m.end())
+            {
+               count=count+m[second_el];
+            }
+            m[arr[i]]++;
+        }
+        return count;
+    }
+};
