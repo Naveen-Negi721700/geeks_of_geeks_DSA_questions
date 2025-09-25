@@ -1,0 +1,23 @@
+class Solution {
+  public:
+    vector<int> intersect(vector<int>& a, vector<int>& b) {
+        // code here
+        unordered_map<int,int>mp;
+        vector<int>ans;
+        int m=a.size();
+        int n=b.size();
+        for(int i=0;i<m;i++)
+        {
+            mp[a[i]]++;
+        }
+        for(int i=0;i<n;i++)
+        {
+            if(mp.find(b[i])!=mp.end() && mp[b[i]]>0)
+            {
+               ans.push_back(b[i]);
+               mp[b[i]]=-1;
+            }
+        }
+        return ans;
+    }
+};
