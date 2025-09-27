@@ -1,0 +1,66 @@
+class Solution {
+  public:
+
+    // Function to return length of longest subsequence of consecutive integers.
+    int longestConsecutive(vector<int>& arr) {
+        // Your code here
+        set<int>s;
+        int count=0;
+        int count1=0;
+        int minimum=INT_MAX;
+        int maximum=INT_MIN;
+        int n=arr.size();
+        for(int i=0;i<n;i++)
+        {
+           minimum=min(arr[i],minimum);
+           maximum=max(arr[i],maximum);
+             s.insert(arr[i]);
+        }
+        int first=minimum;
+        int last=maximum;
+        for(int i=first;i<=last;i++)
+        {
+            if(s.find(i)!=s.end())
+            {
+                count++;}
+             else{
+              count1=max(count,count1);
+               count=0;
+            }
+            
+            
+        }
+        count1=max(count,count1);
+        return count1 ;
+    }
+};  
+
+AND THE SECOND APPROACH IS 
+
+class Solution {
+  public:
+
+    // Function to return length of longest subsequence of consecutive integers.
+    int longestConsecutive(vector<int>& arr) {
+        // Your code here
+        int n=arr.size();
+        int maxlen=0;
+        set<int>s(arr.begin(),arr.end());
+        for(int i:s)
+        {
+            if(s.find(i-1)==s.end())
+            {
+                int currnum=i;
+                int currlen=1;
+                while(s.find(currnum+1)!=s.end())
+                {
+                    currnum+=1;
+                    currlen+=1;
+                }
+                
+                maxlen=max(maxlen,currlen);
+            }
+        }
+        return maxlen;
+    }
+};
