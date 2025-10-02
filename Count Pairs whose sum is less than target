@@ -1,0 +1,27 @@
+// User function Template for C++
+class Solution {
+  public:
+    int countPairs(vector<int> &arr, int target) {
+        // Your code here
+        int n=arr.size();
+        sort(arr.begin(),arr.end());
+        int count=0;
+        int st=0;
+        int end=n-1;
+        while(st<end)
+        {
+            int sum=arr[st]+arr[end];
+            if(sum<target)
+            {
+                count=count+(end-st);
+                
+                st++;
+                
+            }else{
+                end--;
+                
+            }
+        }
+        return count;
+    }
+};
