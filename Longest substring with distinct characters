@@ -1,0 +1,21 @@
+class Solution {
+  public:
+    int longestUniqueSubstr(string &s) {
+        // code here
+        int n=s.size();
+        unordered_map<char,int>m;
+        int left=0;
+        int maxcount=0;
+        for(int right=0;right<n;right++)
+        {
+          if(m.find(s[right])!=m.end() && m[s[right]]>=left)
+           {
+               left=m[s[right]]+1;
+           }
+           m[s[right]]=right;
+           maxcount=max(maxcount,right-left+1);
+        }
+        return maxcount;
+        
+    }
+};
