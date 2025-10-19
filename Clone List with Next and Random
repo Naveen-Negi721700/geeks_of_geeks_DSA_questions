@@ -1,0 +1,47 @@
+/*
+class Node {
+  public:
+    int data;
+    Node* next;
+    Node* random;
+
+    Node(int x) {
+        data = x;
+        next = NULL;
+        random = NULL;
+    }
+};
+*/
+
+class Solution {
+  public:
+    Node* cloneLinkedList(Node* head) {
+        // code here
+        if(head==NULL)
+        {
+            return NULL;
+        }
+        unordered_map< Node*, Node*>m;
+        Node*newhead=new Node(head->data);
+         Node*oldtemp=head->next;
+          Node*newtemp=newhead;
+          m[head]=newhead;
+          while(oldtemp!=NULL)
+          {
+               Node*copynode=new Node(oldtemp->data);
+               m[oldtemp]=copynode;
+               newtemp->next=copynode;
+               newtemp=newtemp->next;
+               oldtemp=oldtemp->next;
+          }
+          newtemp=newhead;
+          oldtemp=head;
+          while(oldtemp!=NULL)
+          {
+              newtemp->random=m[oldtemp->random];
+               newtemp=newtemp->next;
+               oldtemp=oldtemp->next;
+          }
+          return newhead;
+    }
+};
