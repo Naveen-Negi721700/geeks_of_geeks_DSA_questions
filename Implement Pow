@@ -1,0 +1,32 @@
+class Solution {
+  public:
+   double helper(double b, int e )
+   {
+       if(e==0)
+       {
+           return 1; 
+       }
+      
+       double half=helper(b,e/2);
+       if(e%2==0)
+       {
+           return half*half;
+       }
+       else{
+           return b*half*half;
+       }
+       
+       
+   }
+    double power(double b, int e) {
+        long long exp=e;
+        if(exp<0)
+       {
+           b=1/b;
+           exp=-(exp);
+       }
+       return  helper(b,exp);
+    
+        
+    }
+};
