@@ -1,0 +1,70 @@
+class Solution {
+  public:
+  bool issafe(vector<vector<int>> &mat,int row,int col,int dig)
+  {
+      for(int i=0;i<9;i++)
+      {
+          if(mat[row][i]==dig)
+          {
+              return false;
+          }
+      }
+      for(int i=0;i<9;i++)
+      {
+          if(mat[i][col]==dig)
+          {
+              return false;
+          }
+      }
+      int strow=(row/3)*3;
+      int stcol=(col/3)*3;
+      for(int i=strow;i<=strow+2;i++)
+      {
+          for(int j=stcol;j<=stcol+2;j++)
+          {
+              if(mat[i][j]==dig)
+              {
+                  return false;
+              }
+          }
+      }
+      return true;
+      
+  }
+  bool helper(vector<vector<int>> &mat,int row,int col)
+  {
+      if(row==9)
+      {
+          return true;
+      }
+      int nextrow=row;
+      int nextcol=col+1;
+      if(nextcol==9)
+      {
+          nextrow=row+1;
+          nextcol=0;
+      }
+      if(mat[row][col]!=0)
+      {
+         return helper(mat,nextrow,nextcol);
+      }
+      
+      for(int i=1;i<=9;i++){
+      if(issafe(mat,row,col,i))
+      {
+          mat[row][col]=i;
+          if( helper(mat,nextrow,nextcol)){
+         return true;}
+          mat[row][col]=0;
+          
+      }
+      }
+      return false;
+  }
+    void solveSudoku(vector<vector<int>> &mat) {
+        // code here
+     
+        helper(mat,0,0);
+        
+    }
+};
