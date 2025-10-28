@@ -1,0 +1,42 @@
+class Solution {
+  public:
+  bool dfs(vector<vector<char>> &mat, string &word,int i,int j,int ind)
+  {
+      if(ind==word.size())
+      {
+          return true;
+      }
+      if(i<0 || i>=mat.size() || j<0 || j>=mat[0].size() || mat[i][j]!=word[ind])
+      {
+          return false;
+      }
+      char temp=mat[i][j];
+      mat[i][j]='*';
+      
+      bool found=dfs(mat,word,i+1,j,ind+1)||dfs(mat,word,i-1,j,ind+1)||dfs(mat,word,i,j+1,ind+1)||dfs(mat,word,i,j-1,ind+1);
+       mat[i][j]=temp;
+       return found;
+  }
+  bool helper(vector<vector<char>> &mat, string &word)
+  {
+       int m=mat.size();
+        int n=mat[0].size();
+      for(int i=0;i<m;i++)
+      {
+          for(int j=0;j<n;j++ )
+          {
+              if(mat[i][j]==word[0])
+              {
+                 if( dfs(mat,word,i,j,0))
+                  {
+                      return true;
+                  }
+              }
+          }
+      }
+      return false;
+  }
+    bool isWordExist(vector<vector<char>> &mat, string &word) {
+        return helper(mat ,word);
+    }
+};
