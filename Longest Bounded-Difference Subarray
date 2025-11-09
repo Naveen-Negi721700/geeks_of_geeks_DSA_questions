@@ -1,0 +1,36 @@
+class Solution {
+  public:
+    vector<int> longestSubarray(vector<int>& arr, int x) {
+        // code here
+       deque<int>mind,maxd;
+       int left=0;
+       int bestlen=0;
+       int bestl=0;
+       for(int right=0;right<arr.size();right++)
+        {
+            while(!maxd.empty()&&arr[maxd.back()]<arr[right])
+            {
+                maxd.pop_back();
+            }
+            maxd.push_back(right);
+            while(!mind.empty()&& arr[mind.back()]>arr[right])
+            {
+                mind.pop_back();
+            }
+            mind.push_back(right);
+            while(!mind.empty() && !maxd.empty() && arr[maxd.front()]-arr[mind.front()]>x)
+            {
+                if(maxd.front()==left)maxd.pop_front();
+                if(mind.front()==left)mind.pop_front();
+                left++;
+            }
+            int len=right-left+1;
+            if(len>bestlen)
+            {
+                bestlen=len;
+                bestl=left;
+            }
+        }
+      return  vector<int>(arr.begin()+bestl , arr.begin() +bestl +bestlen);
+    }
+};
