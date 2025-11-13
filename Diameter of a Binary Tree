@@ -1,0 +1,35 @@
+/*
+class Node {
+public:
+    int data;
+    Node* left;
+    Node* right;
+
+    Node(int val) {
+        data = val;
+        left = NULL;
+        right = NULL;
+    }
+};
+*/
+
+class Solution {
+  public:
+  int ans=0;
+  int height(Node* root)
+  {
+      if(root==NULL)
+      {
+          return 0;
+      }
+      int lh=height(root->left);
+      int rh=height(root->right);
+      ans=max(lh+rh,ans);
+      return max(lh,rh)+1;
+  }
+    int diameter(Node* root) {
+        // code here
+        height(root);
+        return ans;
+    }
+};
