@@ -1,0 +1,34 @@
+/*
+class Node {
+public:
+    int data;
+    Node *left;
+    Node *right;
+
+    Node(int x) {
+        data = x;
+        left = right = NULL;
+    }
+};
+*/
+
+class Solution {
+  public:
+  void helper(Node*root)
+  {
+      if(root==NULL)
+      {
+          return ;
+      }
+     Node*temp=root->left;
+     root->left=root->right;
+     root->right=temp;
+     helper(root->right);
+     helper(root->left);
+     return ;
+  }
+    void mirror(Node* root) {
+        // code here
+        helper(root);
+    }
+};
