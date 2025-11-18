@@ -1,0 +1,39 @@
+/*
+class Node {
+  public:
+    int data;
+    Node *left;
+    Node *right;
+
+    Node(int val) {
+        data = val;
+        left = right = NULL;
+    }
+};
+*/
+class Solution {
+    int total=0;
+  public:
+  void helper(Node *root, int k,unordered_map<int,int>&m,int sum){
+      if(root==NULL)
+      {
+          return ;
+      }
+      sum+=root->data;
+      if(m.find(sum-k)!=m.end())
+      {
+          total=total+m[sum-k];
+      }
+      m[sum]++;
+      helper(root->left,k,m,sum);
+       helper(root->right,k,m,sum);
+       m[sum]--;
+  }
+    int countAllPaths(Node *root, int k) {
+        // code here
+        unordered_map<int,int>m;
+        m[0]=1;
+        helper(root,k,m,0);
+        return total;
+    }
+};
