@@ -1,0 +1,32 @@
+/*
+class Node {
+public:
+    int data;
+    Node* left;
+    Node* right;
+
+    Node(int val) {
+        data = val;
+        left = right = nullptr;
+    }
+};
+*/
+
+class Solution {
+  public:
+  bool helper(Node* root ,int minimum,int maximum){
+      if(root==NULL)
+      {
+          return true;
+      }
+      if(root->data<=minimum || root->data>=maximum)
+      {
+          return false;
+      }
+      return helper(root->left,minimum,root->data)&&helper(root->right,root->data,maximum);
+  }
+    bool isBST(Node* root) {
+        // code here
+       return helper(root ,INT_MIN ,INT_MAX);
+    }
+};
