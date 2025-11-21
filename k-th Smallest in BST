@@ -1,0 +1,39 @@
+/*
+class Node {
+  public:
+    int data;
+    Node* left;
+    Node* right;
+
+    Node(int val) {
+        data = val;
+        left = right = NULL;
+    }
+};
+*/
+
+class Solution {
+  public:
+    void inordered(Node *root,int& ans, int& k)
+  {
+      
+      if(!root||k==0)
+      {
+          return;
+      }
+      inordered(root->left,ans,k);
+      k--;
+      if(k==0)
+      {
+          ans=root->data;
+          return ;
+      }
+      inordered(root->right,ans,k);
+  }
+    int kthSmallest(Node *root, int k) {
+        // code here
+        int ans=-1;
+        inordered(root,ans,k);
+        return ans;
+    }
+};
