@@ -1,0 +1,37 @@
+/*
+class Node {
+  public:
+    int data;
+    Node* left;
+    Node* right;
+
+    Node(int val) {
+        data = val;
+        left = NULL;
+        right = NULL;
+    }
+};
+*/
+
+class Solution {
+  public:
+    Node* LCA(Node* root, Node* n1, Node* n2) {
+        // code here
+        int a=n1->data;
+        int b=n2->data;
+        while(root!=NULL)
+        {
+            if(a<root->data && b<root->data)
+            {
+                root=root->left;
+            }else if(a>root->data && b>root->data)
+            {
+                root=root->right;
+            }else{
+                return root;
+            }
+        }
+        return root;
+        
+    }
+};
