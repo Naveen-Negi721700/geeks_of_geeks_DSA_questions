@@ -1,0 +1,49 @@
+/*
+class Node {
+public:
+    int data;
+    Node *left;
+    Node *right;
+
+    Node(int val) {
+        data = val;
+        left = right = nullptr;
+    }
+};
+*/
+
+class Solution {
+  public:
+  void helper(Node *root,vector<int>&arr)
+  {
+      if(root==NULL)
+      {
+          arr.push_back(-1);
+          return;
+      }
+      arr.push_back(root->data);
+      helper(root->left,arr);
+      helper(root->right,arr);
+      
+  }
+  Node* Helper(vector<int> &arr,int &i){
+      if(i>=arr.size() || arr[i]==-1)
+      {
+          i++;
+          return NULL;
+      }
+      Node*root=new Node(arr[i++]);
+      root->left=Helper(arr,i);
+      root->right=Helper(arr,i);
+      return root;
+  }
+    vector<int> serialize(Node *root) {
+        vector<int>arr;
+     helper(root,arr);
+     return arr;}
+
+    Node *deSerialize(vector<int> &arr) {
+        int i=0;
+       return Helper(arr,i);
+    }
+};
