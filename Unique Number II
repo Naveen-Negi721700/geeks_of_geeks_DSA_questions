@@ -1,0 +1,25 @@
+class Solution {
+  public:
+    vector<int> singleNum(vector<int>& arr) {
+        // Code here.
+        unordered_map<int,int>m;
+        vector<int>ans;
+        for(int x:arr)
+        {
+            m[x]++;
+        }
+        for(auto &i :m)
+        {
+            if(i.second==1)
+            {
+                ans.push_back(i.first);
+            }
+            
+        }
+        if(ans[0]>ans[1])
+        {
+            swap(ans[0],ans[1]);
+        }
+        return ans ;
+    }
+};
