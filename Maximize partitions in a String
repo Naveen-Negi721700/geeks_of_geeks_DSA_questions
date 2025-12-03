@@ -1,0 +1,22 @@
+class Solution {
+  public:
+    int maxPartitions(string &s) {
+        // code here
+        vector<int>last(26,-1);
+        for(int i=0;i<s.size();i++)
+        {
+            last[s[i]-'a']=i;
+        }
+        int count=0;
+        int maxLast=0;
+        for(int i=0;i<s.size();i++)
+        {
+            maxLast=max(maxLast,last[s[i]-'a']);
+            if(i==maxLast)
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+};
